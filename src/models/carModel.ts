@@ -13,10 +13,10 @@ const carSchema = new Schema<ICar>({
   versionKey: false,
 });
 
-export default class CarsModel {
-  constructor(private carsModel = createModel<ICar>('cars', carSchema)) {}
+export default class CarModel {
+  constructor(private carModel = createModel<ICar>('cars', carSchema)) {}
 
   public async getAll(): Promise<ICar[]> {
-    return this.carsModel.find();
+    return this.carModel.find();
   }
 }
