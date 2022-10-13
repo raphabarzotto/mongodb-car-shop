@@ -19,4 +19,8 @@ export default class CarModel {
   public async getAll(): Promise<ICar[]> {
     return this.carModel.find();
   }
+
+  public async getById(id: string) {
+    return this.carModel.findById(id);
+  }
 }
