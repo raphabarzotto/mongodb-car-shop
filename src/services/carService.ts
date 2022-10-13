@@ -1,4 +1,3 @@
-import { ICar } from '../interfaces/ICar';
 import CarsModel from '../models/carModel';
 
 export default class CarsController {
