@@ -40,4 +40,24 @@ export default class CarsController {
       return next(error);
     }
   };
+
+  public getById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      if (id.length !== 24) {
+        return res.status(400).json({ error: error400Message });
+      }
+
+      const carById = await this.carsService.getById(id);
+
+      if (!carById) {
+        return res.status(404).json({ error: error404Message });
+      }
+
+      return res.status(200).json(carById);
+    } catch (error) {
+      console.log(error);
+      return next(error);
+    }
+  };
 }
