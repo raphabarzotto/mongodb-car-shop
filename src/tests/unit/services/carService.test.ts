@@ -13,7 +13,7 @@ describe('Car Service tests', () => {
 
   after(() => { sinon.restore() });
 
-  it('It is possible to create a car sussesfully', async () => {
+  it('It is possible to create a car successfully', async () => {
     sinon.stub(carModel, 'create').resolves(carMockId);
     try {
       const carCreated = await carService.create(carMock);
