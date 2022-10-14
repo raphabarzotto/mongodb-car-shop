@@ -11,5 +11,8 @@ const carController = new CarController(carService);
 
 CarRoute.post('/', carController.create);
 CarRoute.get('/', carController.getAll);
+CarRoute.get('/:id', carController.getById);
+CarRoute.put('/:id', carController.update);
+CarRoute.delete('/:id', carController.delete);
 
 export default CarRoute;
