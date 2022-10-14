@@ -1,7 +1,7 @@
 import { Schema, model as createModel } from 'mongoose';
 import { IMotorcycle } from '../interfaces/IMotorcycle';
 
-const motorcycleSchema = new Schema<IMotorcycle>({
+const motorcycleSch = new Schema<IMotorcycle>({
   model: { type: String, required: true },
   year: { type: Number, required: true },
   color: { type: String, required: true },
@@ -14,10 +14,10 @@ const motorcycleSchema = new Schema<IMotorcycle>({
 });
 
 export default class MotorcycleModel {
-  constructor(private motorcycleModel = createModel<IMotorcycle>('cars', motorcycleSchema)) {}
+  constructor(private motorcycleModel = createModel<IMotorcycle>('motorcycles', motorcycleSch)) {}
 
-  public async create(newCar: IMotorcycle): Promise<IMotorcycle> {
-    return this.motorcycleModel.create(newCar);
+  public async create(newMotorcycle: IMotorcycle): Promise<IMotorcycle> {
+    return this.motorcycleModel.create(newMotorcycle);
   }
 
   public async getAll(): Promise<IMotorcycle[]> {
@@ -28,10 +28,10 @@ export default class MotorcycleModel {
     return this.motorcycleModel.findById(id);
   }
 
-  public async update(id: string, carData: object): Promise<IMotorcycle | null> {
+  public async update(id: string, motorcycleData: object): Promise<IMotorcycle | null> {
     const car = await this.motorcycleModel.findOneAndUpdate(
       { _id: id },
-      { ...carData },
+      { ...motorcycleData },
     );
     return car;
   }

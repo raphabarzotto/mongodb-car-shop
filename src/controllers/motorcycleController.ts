@@ -11,18 +11,18 @@ export default class MotorcycleController {
 
   public create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const carToCreate = req.body;
+      const motorcycleToCreate = req.body;
 
-      if (testMotorcycleBody(carToCreate)) {
+      if (testMotorcycleBody(motorcycleToCreate)) {
         return res.status(400).json({ error: error400Message });
       }
 
-      const createdCar = await this.motorcycleService.create(carToCreate);
-      if (!createdCar) {
+      const createdMotorcycle = await this.motorcycleService.create(motorcycleToCreate);
+      if (!createdMotorcycle) {
         return res.status(400).json({ error: 'Can not be possible to create a car' });
       }
   
-      return res.status(201).json(createdCar);
+      return res.status(201).json(createdMotorcycle);
     } catch (error) {
       return next(error);
     }
@@ -30,12 +30,12 @@ export default class MotorcycleController {
 
   public getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const cars = await this.motorcycleService.getAll();
-      if (!cars) {
+      const motorcycles = await this.motorcycleService.getAll();
+      if (!motorcycles) {
         return res.status(400).json({ error: error400Message });
       }
   
-      return res.status(200).json(cars);
+      return res.status(200).json(motorcycles);
     } catch (error) {
       return next(error);
     }
@@ -48,13 +48,13 @@ export default class MotorcycleController {
         return res.status(400).json({ error: error400Message });
       }
 
-      const carById = await this.motorcycleService.getById(id);
+      const motorcycleById = await this.motorcycleService.getById(id);
 
-      if (!carById) {
+      if (!motorcycleById) {
         return res.status(404).json({ error: error404Message });
       }
 
-      return res.status(200).json(carById);
+      return res.status(200).json(motorcycleById);
     } catch (error) {
       return next(error);
     }
@@ -72,8 +72,8 @@ export default class MotorcycleController {
         return res.status(400).json({ error: error400Message });
       }
 
-      const updateCar = await this.motorcycleService.update(id, req.body);
-      if (!updateCar) {
+      const updateMotorcycle = await this.motorcycleService.update(id, req.body);
+      if (!updateMotorcycle) {
         return res.status(404).json({ error: error404Message });
       }
 
@@ -89,9 +89,9 @@ export default class MotorcycleController {
       if (id.length !== 24) {
         return res.status(400).json({ error: error400Message });
       }
-      const deleteCar = await this.motorcycleService.delete(id);
+      const deleteMotorcycle = await this.motorcycleService.delete(id);
 
-      if (!deleteCar) {
+      if (!deleteMotorcycle) {
         return res.status(404).json({ error: error404Message });
       }
       return res.status(204).json({ _id: id });
