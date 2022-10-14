@@ -11,4 +11,16 @@ export default class CarsServices {
   public async getAll() {
     return this.carsModel.getAll();
   }
+
+  public async getById(id: string) {
+    return this.carsModel.getById(id);
+  }
+
+  public async update(id: string, carData: object) {
+    return this.carsModel.update(id, carData);
+  }
+
+  public async delete(id: string) {
+    return this.carsModel.delete(id);
+  }
 }
