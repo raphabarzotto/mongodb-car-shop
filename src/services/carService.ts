@@ -7,4 +7,8 @@ export default class CarsServices {
   public async create(newCar: ICar) {
     return this.carsModel.create(newCar);
   }
+
+  public async getAll() {
+    return this.carsModel.getAll();
+  }
 }
