@@ -19,4 +19,8 @@ export default class CarsModel {
   public async create(newCar: ICar): Promise<ICar> {
     return this.carsModel.create(newCar);
   }
+
+  public async getAll(): Promise<ICar[]> {
+    return this.carsModel.find();
+  }
 }
