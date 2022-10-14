@@ -82,4 +82,21 @@ export default class CarsController {
       return next(error);
     }
   };
+
+  public delete = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      if (id.length !== 24) {
+        return res.status(400).json({ error: error400Message });
+      }
+      const deleteCar = await this.carsService.delete(id);
+
+      if (!deleteCar) {
+        return res.status(404).json({ error: error404Message });
+      }
+      return res.status(204).json({ _id: id });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
