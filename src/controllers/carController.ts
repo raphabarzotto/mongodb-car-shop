@@ -4,7 +4,7 @@ import CarsService from '../services/carService';
 import testCarBody from '../helper/testCarBody';
 
 const error400Message = 'Id must have 24 hexadecimal characters';
-// const error404Message = 'Object not found';
+const error404Message = 'Object not found';
 
 export default class CarsController {
   constructor(private carsService = new CarsService()) {}
@@ -23,6 +23,19 @@ export default class CarsController {
       }
   
       return res.status(201).json(createdCar);
+    } catch (error) {
+      return next(error);
+    }
+  };
+
+  public getAll = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const cars = await this.carsService.getAll();
+      if (!cars) {
+        return res.status(400).json({ error: error400Message });
+      }
+  
+      return res.status(200).json(cars);
     } catch (error) {
       return next(error);
     }
