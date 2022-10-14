@@ -96,7 +96,7 @@ export default class CarsController {
       }
       return res.status(204).json({ _id: id });
     } catch (error) {
-      console.log(error);
+      return next(error);
     }
   };
 }
