@@ -56,7 +56,29 @@ export default class CarsController {
 
       return res.status(200).json(carById);
     } catch (error) {
-      console.log(error);
+      return next(error);
+    }
+  };
+
+  public update = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+
+      if (id.length !== 24) {
+        return res.status(400).json({ error: error400Message });
+      }
+
+      if (!Object.keys(req.body).length) {
+        return res.status(400).json({ error: error400Message });
+      }
+
+      const updateCar = await this.carsService.update(id, req.body);
+      if (!updateCar) {
+        return res.status(404).json({ error: error404Message });
+      }
+
+      return res.status(200).json({ message: 'teste' });
+    } catch (error) {
       return next(error);
     }
   };
