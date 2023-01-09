@@ -77,7 +77,7 @@ export default class MotorcycleController {
         return res.status(404).json({ error: error404Message });
       }
 
-      return res.status(200).json({ message: 'teste' });
+      return res.status(200).json({ message: 'Succesfully Updated' });
     } catch (error) {
       return next(error);
     }
